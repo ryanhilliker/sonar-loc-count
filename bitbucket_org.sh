@@ -31,10 +31,10 @@ for repo in "${repos[@]}"; do
     remoteUrl=https://$user:$token@bitbucket.org/$full_name.git
     fileList+="$name.cloc "
     echo Checking out $full_name - $branch
-    git clone $remoteUrl --depth 1 --branch $branch $name
+    git clone $remoteUrl --depth 1 --branch $branch "$name"
     echo Counting $full_name - $branch
-    cloc $name --force-lang-def=sonar-lang-defs.txt --report-file=$name.cloc  
-    rm -rf $name
+    cloc "$name" --force-lang-def=sonar-lang-defs.txt --report-file="$name.cloc"  
+    rm -rf "$name"
 done
 
 echo "Building final report:"
